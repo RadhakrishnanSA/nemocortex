@@ -751,9 +751,9 @@ body::before {
           <div class="settings-row-info">Max tokens<span>Maximum response length</span></div>
           <select class="settings-select" id="s-maxtokens">
             <option value="512">512 — fast</option>
-            <option value="1024" selected>1024 — balanced</option>
+            <option value="1024">1024 — balanced</option>
             <option value="2048">2048 — detailed</option>
-            <option value="4096">4096 — maximum</option>
+            <option value="4096" selected>4096 — maximum</option>
           </select>
         </div>
         <div class="settings-row">
@@ -1363,7 +1363,7 @@ async function sendMessage() {
           api_key: apiKey,
           model: App.settings.model || 'nvidia/nemotron-3-super-120b-a12b',
           messages: apiMessages,
-          max_tokens: parseInt(App.settings.maxTokens) || 1024,
+          max_tokens: parseInt(App.settings.maxTokens) || 4096,
           temperature: parseFloat(App.settings.temperature) || 0.7,
           stream: false
         })

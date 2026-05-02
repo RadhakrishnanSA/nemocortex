@@ -88,7 +88,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
         if nvidia_payload.get('model') not in allowed_models:
             nvidia_payload['model'] = 'nvidia/nemotron-3-super-120b-a12b'
 
-        nvidia_payload['max_tokens'] = min(int(nvidia_payload.get('max_tokens', 1024)), 4096)
+        nvidia_payload['max_tokens'] = min(int(nvidia_payload.get('max_tokens', 4096)), 8192)
         nvidia_payload['stream'] = False
 
         try:
@@ -102,7 +102,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
                 },
                 method='POST'
             )
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=180) as resp:
                 resp_body = resp.read()
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
